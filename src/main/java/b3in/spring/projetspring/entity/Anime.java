@@ -16,9 +16,9 @@ public class Anime {
 
     private String studio;
 
-    private String year;
+    private int year;
 
-    public Anime(int id, String name, String genre, int episodes, String studio, String year) {
+    public Anime(int id, String name, String genre, int episodes, String studio, int year) {
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -71,11 +71,11 @@ public class Anime {
         this.studio = studio;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

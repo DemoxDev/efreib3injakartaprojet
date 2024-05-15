@@ -17,8 +17,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "info", method = RequestMethod.GET)
-    public String info() {
+    @RequestMapping(value = "infoUser", method = RequestMethod.GET)
+    public String infoUser() {
         return "L'appli tourne...";
     }
 

@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     public String createUser(User user){
@@ -19,7 +23,13 @@ public class UserService {
             if(userRepository.existsByEmail(user.getEmail())){
                 return "Email existe deja";
             }
-            user.setId(userRepository.findMaxId() + 1);
+
+            Integer maxId = userRepository.findMaxId();
+            if (maxId == null) {
+                maxId = 0;
+            }
+
+            user.setId(maxId + 1);
             userRepository.save(user);
             return "Utilisateur cree avec succes";
         } catch (Exception e){
