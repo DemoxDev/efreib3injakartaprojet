@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,27 @@
     <div class="hidder" id="hidder">
         <div class="opacityscreen"></div>
         <div class="addanime">
-            <img src="/img/aqua3.PNG" class="imghidder">
+            <img src="/img/aqua3.png" alt="aqua3" class="imghidder">
             <form class="formdiv">
-                <p>Title</p>
-                <input class="input" placeholder="Enter Anime title here"></input>
-                <p>Image URL</p>
-                <input class="input" placeholder="Enter URL here"></input>
+                <p>Nom</p>
+                <label for="input-title">
+                    <input class="input" id="input-title" name="input-title" placeholder="Saisir le nom de l'anime"/>
+                </label>
+                <p>Genre</p>
+                <label for="input-genre">
+                    <input class="input" id="input-genre" name="input-genre" placeholder="Saisir le genre de l'anime"/>
+                </label>
+                <p>Studio</p>
+                <label for="input-studio">
+                    <input class="input" id="input-studio" name="input-studio" placeholder="Saisir le studio créateur"/>
+                </label>
+                <p>Année</p>
+                <label for="input-year">
+                    <input class="input" id="input-year" name="input-year" placeholder="Saisir son année de sortie"/>
+                </label>
+                <p>Image</p>
+                <input type="file" id="input-img" name="input-img" accept="image/jpeg" placeholder="Veuillez choisir une image"/>
+
                 <div class="formbuttons">
                     <button>DELETE</button>
                     <button>SEND</button>
@@ -53,7 +68,7 @@
         <div class="burger height-zero" id="burger">
             <button class="burgerbutton" id="burgerbutton1">
                 <div class="burgerbutton2">
-                    <p>Connecté en tant que : Timothexemple</p>
+                    <p>Connecté en tant que : Timothexemple</p> <!-- Ici on fera comme ça genre ${user.name} -->
                 </div>
             </button>
             <button class="burgerbutton" id="burgerbutton2">
@@ -72,9 +87,9 @@
         <div class="animelistdiv">
             <div class="centerlist">
                 <!-- Ici se trouveront les animés :D -->
-                <div th:each="anime : ${animes}" class="animebg" onclick="toggleMenu()">
-                    <img th:src="'data:image/png;base64,'+${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(anime.image)}" class="cardimg">
-                    <img src="/img/card.PNG" class="card">
+                <div th:each="anime, stat : ${animes}" class="animebg" onclick="toggleMenu()">
+                    <img alt="animeimg" th:src="'data:image/png;base64,'+${imagesBase64[stat.index]}" class="cardimg">
+                    <img alt="card" src="/img/card.PNG" class="card">
                     <h1 th:text="${anime.name}" class="text"></h1>
                 </div>
             </div>

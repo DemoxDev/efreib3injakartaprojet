@@ -1,32 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/getAllAnime')
-        .then(response => response.json())
-        .then(animes => {
-            var centerList = document.querySelector('.centerlist');
-            animes.forEach(anime => {
-                var div = document.createElement('div');
-                div.className = 'animebg';
-
-                var img1 = document.createElement('img');
-                img1.className = 'cardimg';
-                img1.src = 'data:image/png;base64,' + anime.image;
-                div.appendChild(img1);
-
-                var img2 = document.createElement('img');
-                img2.className = 'card';
-                img2.src = '/img/card.PNG';
-                div.appendChild(img2);
-
-                var h1 = document.createElement('h1');
-                h1.className = 'text';
-                h1.textContent = anime.name;
-                div.appendChild(h1);
-
-                centerList.appendChild(div);
-            });
-        });
-});
-
 function toggleMenu() {
     var burgerhider = document.getElementById('burgerhider');
     var burger = document.getElementById('burger');

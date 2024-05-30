@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import b3in.spring.projetspring.repository.AnimeRepository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class AnimeService {
         }
     }
 
+    @ModelAttribute("animes")
     public List<Anime> getAllAnime(){
         return animeRepository.findAll();
     }
