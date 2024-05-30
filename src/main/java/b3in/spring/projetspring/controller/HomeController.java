@@ -23,6 +23,7 @@ public class HomeController {
 
     @GetMapping("/mainpage")
     public String mainpage(Model model) {
+        // TODO: Récupèrer le username et infos utilisateur nécessaires quand on aura mis en place l'auth et connexion
         List<Anime> animes = animeService.getAllAnime();
         List<String> imagesBase64 = animes.stream()
                 .map(anime -> Base64.getEncoder().encodeToString(anime.getImage()))
