@@ -1,0 +1,384 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, li, a, img, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*{
+    user-select: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EDF1F5;
+}
+.animelist {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width:100%;
+    justify-content: center;
+}
+.animelistdiv {
+    display:flex;  
+    width:94vw;
+    margin-top:8rem;
+    justify-content: center;
+}
+.centerlist {
+    width:89vw;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;  
+}
+.animebg {
+    width:23vw;
+    height: 23vw;
+    background-color: red;
+    margin:3.3vw;
+    margin-bottom: 4vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.card{
+    width: 100%;
+    height:100%;
+    display:flex;
+    cursor:pointer;
+}
+.cardimg{
+    width: 17.3vw;
+    height:17.3vw;
+    position: absolute;
+    display:flex;
+    border-radius: 2.5vw;
+    top:1.3vw;
+    left:1.54vw;
+    object-fit: cover;
+    pointer-events: none;
+}
+.text{
+    position:absolute;
+    bottom:1.9vw;
+    left:5.3vw;
+    font-size: 1.4vw;
+    color:white;
+    width:15.5vw;
+    text-wrap: nowrap;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+header {
+    background-color: #5DB4EF;
+    height:130px;
+    border-bottom: 11px solid #ffffff;
+    position:fixed;
+    z-index: 50;
+    width:100%; 
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 120px; /* Adjust size as needed */
+}
+
+.button-container {
+    display: flex;
+    gap: 30px;
+    margin-right: 50px;
+}
+
+.header-button {
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #3D57A1;
+    height: 80px;
+    width: 80px;
+    border-radius: 999px;
+}
+
+.header-button {
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #3D57A1;
+    height: 80px;
+    width: 80px;
+    border-radius: 999px;
+}
+
+.header-button:hover {
+    transition: 150ms linear;
+    background-color: #4969c2;
+}
+.burgerhider {
+    position: absolute;
+    background-color: #5DB4EF;
+    right:0;
+    top: 0;
+    width:22.6rem;
+    height:30rem;
+    margin-right: 31px;
+    margin-top:120px;
+    display: flex;
+    flex-direction: column;
+    z-index: 33;
+    transition: 500ms;
+}
+
+.burger {
+    position: absolute;
+    background-color: #5DB4EF;
+    right:0;
+    top: 0;
+    width:24rem;
+    margin-right: 20px;
+    margin-top:130px;
+    display: flex;
+    flex-direction: column;
+    border:11px solid white;
+    border-radius: 3rem;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+    transition: 300ms;
+    z-index: 30;
+}
+
+.underline {
+    text-decoration: underline;
+}
+.height-zero {
+    height: 0;
+    border-bottom: hidden;
+}
+
+.height-full {
+    height: 30rem;
+    
+}
+.height-full2 {
+    height: 4rem;
+    transition: 4ms;
+    
+}
+
+.burgerbutton {
+    height:130px;
+    width:100%;
+    background-color:#5DB4EF;
+    color:white;
+    border: none;
+    outline: none;
+    display:none;
+    padding-bottom: 55px;
+}
+
+.burgerbutton2 {
+    right:0px;
+    width:300px;
+    position:absolute;
+    border-bottom:5px solid white;
+    font-size: 30px;
+    padding-bottom:30px;
+    padding-right:10px;
+}
+
+.burgerbutton2 p{
+    text-align: left;
+    font-size: 26px;
+    font-weight: bold   ;
+}
+.burgerbutton2 h4{
+    text-align: left;
+    font-size: 26px;
+}
+.burgerbutton2 h4:hover{
+    color:#9bd7ff;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+
+.hidder {
+    width:100%;
+    height: 100%;
+    z-index: 100;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    overflow: hidden;
+}   
+
+.addanime {
+    position:fixed;
+    background-color: #3D57A1;
+    width: 68vw;
+    height:70vh;
+    z-index: 110;
+    border-radius: 5vw;
+    border: white solid 10px;
+    bottom:5vh;
+}
+
+.opacityscreen {
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background-color: #3153B4;
+    opacity: 69%;
+}
+
+.cross {
+    width:8vw;
+    height:8vw;
+    background-color:#3D57A1;
+    border-radius: 999px;
+    border: white solid 10px;
+    top:-3vw;
+    right:-3vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+}
+
+.cross:hover {
+    width:10vw;
+    height:10vw;
+    transition-duration: 300ms;
+    top:-4vw;
+    right:-4vw
+}
+.crossbtn {
+    width:100%;
+    height:100%;
+    z-index: 140;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.crossbtn {
+    width:100%;
+    height:100%;
+    z-index: 140;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.rightsquare {
+    width:8vw;
+    height:8vw;
+    background-color:#3D57A1;
+    top:0;
+    right:0;
+    position: absolute;
+    z-index: 120;
+    outline: none;
+    border: hidden;
+}
+
+
+.imghidder {
+    width:45vw;
+    height:100%;
+    object-fit: cover;
+    object-position: right;
+    border-radius: 4vw;
+    border-bottom-right-radius: 0px;
+    position: absolute;
+}
+
+.formdiv {
+    position:absolute;
+    right:0;
+    width:50%;
+    height:100%;
+    z-index: 300;
+    border-radius: 4vw;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.input {
+    margin-left: 30px;
+    margin-top:30px;
+    width:24vw;
+    height:3vw;
+    border-radius: 1.3vw;
+    border:3px solid black;
+    outline: none;
+    padding-left: 1vw;
+    pointer-events: visible;
+}
+
+.formdiv p{
+    margin-left:30px;
+    margin-top:30px;
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
+    z-index: 300;
+    border-radius: 4vw;
+}
+
+.formbuttons {
+    margin-top:30px;
+    margin-left:30px;
+    border-top:3px solid black;
+    width:26vw;
+    height:100%;
+    
+}
+
+.formbuttons button{
+    margin-top:30px;
+    margin-left:1.5vw;
+    border:3px solid black;
+    width:40%;
+    height:20%;
+    border-radius: 1.5vw;
+    color:white;
+    font-size:1.4vw;
+    font-weight: 400;
+    cursor:pointer;
+    pointer-events: visible;
+    transition-duration: 300ms;
+}
+
+.formbuttons button:nth-child(1){
+    background-color: #e8171769;
+}
+.formbuttons button:nth-child(1):hover{
+    background-color: #e81717b6;
+}
+
+.formbuttons button:nth-child(2){
+    background-color: #52B3F0;
+}
+
+.formbuttons button:nth-child(2):hover{
+    background-color: #8ed4ff;
+}

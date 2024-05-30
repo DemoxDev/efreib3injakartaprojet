@@ -7,6 +7,7 @@ import b3in.spring.projetspring.repository.AnimeRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimeService {
@@ -47,14 +48,20 @@ public class AnimeService {
         if (animeRepository.existsByName(anime.getName())){
             try {
                 List<Anime> animes = animeRepository.findByName(anime.getName());
-                animes.stream().forEach(a -> {
-                    Anime animeToUpdate = animeRepository.findById(a.getId()).get();
-                    animeToUpdate.setName(anime.getName());
-                    animeToUpdate.setGenre(anime.getGenre());
-                    animeToUpdate.setEpisodes(anime.getEpisodes());
-                    animeToUpdate.setStudio(anime.getStudio());
-                    animeToUpdate.setYear(anime.getYear());
-                    animeRepository.save(animeToUpdate);
+                animes.forEach(a -> {
+                    Optional<Anime> optionalAnime = animeRepository.findById(a.getId());
+                    if (optionalAnime.isPresent()) {
+                        Anime animeToUpdate = optionalAnime.get();
+                        animeToUpdate.setName(anime.getName());
+                        animeToUpdate.setGenre(anime.getGenre());
+                        animeToUpdate.setEpisodes(anime.getEpisodes());
+                        animeToUpdate.setStudio(anime.getStudio());
+                        animeToUpdate.setYear(anime.getYear());
+                        animeToUpdate.setImage(anime.getImage());
+                        animeRepository.save(animeToUpdate);
+                    } else {
+                        throw new IllegalStateException("Anime non trouve");
+                    }
                 });
                 return "Anime mis a jour avec succes";
             } catch (Exception e){
@@ -70,7 +77,7 @@ public class AnimeService {
         if (animeRepository.existsByName(anime.getName())){
             try {
                 List<Anime> animes = animeRepository.findByName(anime.getName());
-                animes.stream().forEach(a -> {
+                animes.forEach(a -> {
                     System.out.println(a.toString());
                     animeRepository.deleteById(a.getId());
                 });

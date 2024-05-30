@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des animé</title>
+    <link rel="stylesheet" href="/css/List.css">
+</head>
+<body>
+    <div class="hidder" id="hidder">
+        <div class="opacityscreen"></div>
+        <div class="addanime">
+            <img src="/img/aqua3.PNG" class="imghidder">
+            <form class="formdiv">
+                <p>Title</p>
+                <input class="input" placeholder="Enter Anime title here"></input>
+                <p>Image URL</p>
+                <input class="input" placeholder="Enter URL here"></input>
+                <div class="formbuttons">
+                    <button>DELETE</button>
+                    <button>SEND</button>
+                </div>
+            </form>
+            <div class="rightsquare"></div>
+            <div class="cross">
+                <button class="crossbtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="header-container">
+            <img src="/img/logo.png" alt="Logo" class="logo">
+            <div class="button-container">
+                <button class="header-button" id="showHidderButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
+                <button class="header-button" id="toggleButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="bar1"></div>
+        <div class="burgerhider height-zero" id="burgerhider"></div>
+        <div class="burger height-zero" id="burger">
+            <button class="burgerbutton" id="burgerbutton1">
+                <div class="burgerbutton2">
+                    <p>Connecté en tant que : Timothexemple</p>
+                </div>
+            </button>
+            <button class="burgerbutton" id="burgerbutton2">
+                <div class="burgerbutton2 underline" >
+                   <h4>Me déconnecter de Listanime</h4>
+                </div>
+            </button>
+            <button class="burgerbutton" id="burgerbutton3">
+                <div class="burgerbutton2 underline">
+                    <h4>Rétracter le menu déroulant</h4>
+                </div>
+            </button>
+        </div>
+    </header>
+    <section class="animelist">
+        <div class="animelistdiv">
+            <div class="centerlist">
+                <!-- Ici se trouveront les animés :D -->
+                <div th:each="anime : ${animes}" class="animebg" onclick="toggleMenu()">
+                    <img th:src="'data:image/png;base64,'+${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(anime.image)}" class="cardimg">
+                    <img src="/img/card.PNG" class="card">
+                    <h1 th:text="${anime.name}" class="text"></h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/List.js"></script>
+
+</body>
+</html>

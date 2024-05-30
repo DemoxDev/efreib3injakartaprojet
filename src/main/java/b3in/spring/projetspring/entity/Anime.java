@@ -2,6 +2,7 @@ package b3in.spring.projetspring.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Anime {
@@ -18,13 +19,16 @@ public class Anime {
 
     private int year;
 
-    public Anime(int id, String name, String genre, int episodes, String studio, int year) {
+    private byte[] image; // Données images converties en binaire
+
+    public Anime(int id, String name, String genre, int episodes, String studio, int year, byte[] image) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.episodes = episodes;
         this.studio = studio;
         this.year = year;
+        this.image = image;
     }
 
     public Anime() {
@@ -79,4 +83,11 @@ public class Anime {
         this.year = year;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
