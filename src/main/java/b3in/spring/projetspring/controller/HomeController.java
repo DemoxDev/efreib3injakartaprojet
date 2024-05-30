@@ -18,20 +18,28 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "connexion";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        System.out.println("list() method called"); // log
+    @GetMapping("/mainpage")
+    public String mainpage(Model model) {
         List<Anime> animes = animeService.getAllAnime();
-        System.out.println(animes); // log
         List<String> imagesBase64 = animes.stream()
                 .map(anime -> Base64.getEncoder().encodeToString(anime.getImage()))
                 .collect(Collectors.toList());
         model.addAttribute("animes", animes);
         model.addAttribute("imagesBase64", imagesBase64);
-        return "List";
+        return "mainpage";
+    }
+
+    @GetMapping("/connexion")
+    public String connexion() {
+        return "connexion";
+    }
+
+    @GetMapping("/inscription")
+    public String inscription() {
+        return "inscription";
     }
 
 }
