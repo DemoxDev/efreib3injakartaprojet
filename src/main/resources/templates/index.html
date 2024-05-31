@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Index</title>
@@ -7,6 +7,14 @@
 <body>
 
 <h1>Bienvenue dans le monde de spring boot INDEX</h1>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+<div th:if="${param.logout}">
+    <p>You have been logged out.</p>
+</div>
 
 </body>
 </html>

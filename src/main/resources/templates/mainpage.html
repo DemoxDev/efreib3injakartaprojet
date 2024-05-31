@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="/css/mainpage.css">
 </head>
 <body>
+<!-- TODO: UTILISER CELA POUR AFFICHER MENU AJOUT ANIME SI ON EST ADMIN
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('ROLE_USER')">
+    This content is only shown to users.
+</div>
+-->
 <div class="hidder" id="hidder">
     <div class="opacityscreen"></div>
     <div class="addanime">
@@ -57,9 +68,14 @@
                 </svg>
             </button>
             <button class="header-button" id="toggleButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
-                </svg>
+                <div th:if="${#authentication}">
+                    <img th:src="${#authentication.principal.attributes['avatar_url']}" alt="User Avatar">
+                </div>
+                <div th:unless="${#authentication}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
+                    </svg>
+                </div>
             </button>
         </div>
     </div>
@@ -68,12 +84,17 @@
     <div class="burger height-zero" id="burger">
         <button class="burgerbutton" id="burgerbutton1">
             <div class="burgerbutton2">
-                <p>Connecté en tant que : Timothexemple</p> <!-- Ici on fera comme ça genre ${user.name} -->
+                <div th:if="${#authentication}">
+                    <p th:text="${#authentication.principal.attributes['login']}"></p>
+                </div>
+                <div th:unless="${#authentication}">
+                    <p>Connecté en mode anonyme</p>
+                </div>
             </div>
         </button>
         <button class="burgerbutton" id="burgerbutton2">
             <div class="burgerbutton2 underline" >
-                <h4>Me déconnecter de Listanime</h4>
+                <h4 th:href="@{/logout}">Me déconnecter de Listanime</h4> <!-- TODO: Logout ne marche pas, CORRIGER! -->
             </div>
         </button>
         <button class="burgerbutton" id="burgerbutton3">

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="/css/connexion.css">
+    <link rel="stylesheet" th:href="@{/css/connexion.css}">
 </head>
 <body>
 <div class="container">
     <div class="form-container">
         <h1>Connexion</h1>
-        <form>
+        <form th:action="@{/connexion}" method="post">
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required>
 
@@ -19,11 +19,17 @@
 
             <button type="submit">Se connecter</button>
         </form>
-        <p><a href="#">Mot de passe oublié ?</a></p>
+        <a th:href="@{/oauth2/authorization/github}">Login with GitHub</a>
+
+        <div th:if="${param.logout}">
+            <p>Vous avez été déconnécté</p>
+        </div>
+
+        <!-- <p><a th:href="" >Mot de passe oublié ?</a></p> TODO: modifier pour ajouter route mdp oublié (nécessite emails etc)-->
         <p>Pas encore de compte ? <a href="/inscription">Inscrivez vous ici</a></p>
     </div>
     <div class="image-container">
-        <img src="/img/aqua.png" alt="Character Image">
+        <img th:src="@{/img/aqua.png}" alt="Character Image">
     </div>
 </div>
 </body>

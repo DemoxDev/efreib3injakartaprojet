@@ -7,6 +7,7 @@ import b3in.spring.projetspring.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,6 +16,12 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+
+    public Optional<User> login(String username, String password) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        return Optional.empty();
     }
 
     @Transactional
@@ -46,14 +53,43 @@ public class UserService {
         if (userRepository.existsByEmail(user.getEmail())){
             try {
                 List<User> users = userRepository.findByEmail(user.getEmail());
-                users.stream().forEach(u -> {
-                    User userToUpdate = userRepository.findById(u.getId()).get();
-                    userToUpdate.setUsername(user.getUsername());
-                    userToUpdate.setPassword(user.getPassword());
-                    userToUpdate.setEmail(user.getEmail());
-                    userRepository.save(userToUpdate);
+                users.forEach(u -> {
+                    Optional<User> optionalUserToUpdate = userRepository.findById(u.getId());
+                    if (optionalUserToUpdate.isPresent()) {
+                        User userToUpdate = optionalUserToUpdate.get();
+                        userToUpdate.setUsername(user.getUsername());
+                        userToUpdate.setPassword(user.getPassword());
+                        userToUpdate.setEmail(user.getEmail());
+                        userRepository.save(userToUpdate);
+                    } else {
+                        throw new IllegalStateException("Utilisateur non trouve");
+                    }
                 });
                 return "Utilisateur mis a jour avec succes";
+            } catch (Exception e){
+                throw e;
+            }
+        } else {
+            return "Utilisateur non trouve";
+        }
+    }
+
+    @Transactional
+    public String updateUserRole(User user){
+        if (userRepository.existsByEmail(user.getEmail())){
+            try {
+                List<User> users = userRepository.findByEmail(user.getEmail());
+                users.forEach(u -> {
+                    Optional<User> optionalUserToUpdate = userRepository.findById(u.getId());
+                    if (optionalUserToUpdate.isPresent()) {
+                        User userToUpdate = optionalUserToUpdate.get();
+                        userToUpdate.setRole(user.getRole());
+                        userRepository.save(userToUpdate);
+                    } else {
+                        throw new IllegalStateException("Utilisateur non trouve");
+                    }
+                });
+                return "Role mis a jour avec succes";
             } catch (Exception e){
                 throw e;
             }
@@ -67,7 +103,7 @@ public class UserService {
         if (userRepository.existsByEmail(user.getEmail())){
             try {
                 List<User> users = userRepository.findByEmail(user.getEmail());
-                users.stream().forEach(u -> {
+                users.forEach(u -> {
                     System.out.println(u.toString());
                     userRepository.deleteById(u.getId());
                 });
