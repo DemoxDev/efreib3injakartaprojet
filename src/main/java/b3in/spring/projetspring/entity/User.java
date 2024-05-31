@@ -1,18 +1,22 @@
 package b3in.spring.projetspring.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true)
     private String username;
 
+    @Column
     private String password;
 
+    @Column(unique = true)
     private String email;
 
+    @Column
     private String role;
 
 

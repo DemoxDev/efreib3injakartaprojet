@@ -18,7 +18,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public Optional<User> login(String username, String password) {
         Optional<User> userOpt = userRepository.findByUsername(username);
         return Optional.empty();
@@ -50,21 +49,14 @@ public class UserService {
 
     @Transactional
     public String updateUser(User user){
-        if (userRepository.existsByEmail(user.getEmail())){
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if (optionalUser.isPresent()){
             try {
-                List<User> users = userRepository.findByEmail(user.getEmail());
-                users.forEach(u -> {
-                    Optional<User> optionalUserToUpdate = userRepository.findById(u.getId());
-                    if (optionalUserToUpdate.isPresent()) {
-                        User userToUpdate = optionalUserToUpdate.get();
-                        userToUpdate.setUsername(user.getUsername());
-                        userToUpdate.setPassword(user.getPassword());
-                        userToUpdate.setEmail(user.getEmail());
-                        userRepository.save(userToUpdate);
-                    } else {
-                        throw new IllegalStateException("Utilisateur non trouve");
-                    }
-                });
+                User userToUpdate = optionalUser.get();
+                userToUpdate.setUsername(user.getUsername());
+                userToUpdate.setPassword(user.getPassword());
+                userToUpdate.setEmail(user.getEmail());
+                userRepository.save(userToUpdate);
                 return "Utilisateur mis a jour avec succes";
             } catch (Exception e){
                 throw e;
@@ -76,20 +68,13 @@ public class UserService {
 
     @Transactional
     public String updateUserRole(User user){
-        if (userRepository.existsByEmail(user.getEmail())){
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if (optionalUser.isPresent()){
             try {
-                List<User> users = userRepository.findByEmail(user.getEmail());
-                users.forEach(u -> {
-                    Optional<User> optionalUserToUpdate = userRepository.findById(u.getId());
-                    if (optionalUserToUpdate.isPresent()) {
-                        User userToUpdate = optionalUserToUpdate.get();
-                        userToUpdate.setRole(user.getRole());
-                        userRepository.save(userToUpdate);
-                    } else {
-                        throw new IllegalStateException("Utilisateur non trouve");
-                    }
-                });
-                return "Role mis a jour avec succes";
+                User userToUpdate = optionalUser.get();
+                userToUpdate.setRole(user.getRole());
+                userRepository.save(userToUpdate);
+                return "Rôle d'utilisateur mis a jour avec succes";
             } catch (Exception e){
                 throw e;
             }
@@ -100,31 +85,31 @@ public class UserService {
 
     @Transactional
     public String deleteUser(User user){
-        if (userRepository.existsByEmail(user.getEmail())){
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if (optionalUser.isPresent()){
             try {
-                List<User> users = userRepository.findByEmail(user.getEmail());
-                users.forEach(u -> {
-                    System.out.println(u.toString());
-                    userRepository.deleteById(u.getId());
-                });
-                return "Utilisateur supprime avec succes";
+                userRepository.delete(optionalUser.get());
+                return "User deleted successfully";
             } catch (Exception e){
                 throw e;
             }
         } else {
-            return "Utilisateur non trouve";
+            return "User not found";
         }
     }
 
-    public User authenticateUser(String email, String password) {
-        List<User> users = userRepository.findByEmail(email);
-        if (!users.isEmpty()) {
-            User user = users.get(0);
-            if (user.getPassword().equals(password)) {
-                return user;
+    public User authenticateUser(String email, String password){
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()){
+            User existingUser = optionalUser.get();
+            if (existingUser.getPassword().equals(password)) {
+                return existingUser;
+            } else {
+                throw new RuntimeException("Invalid password");
             }
+        } else {
+            throw new RuntimeException("User not found");
         }
-        return null;
     }
 
 }
