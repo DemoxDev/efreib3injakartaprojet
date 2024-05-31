@@ -51,6 +51,21 @@ Créez un fork du projet et faites vos modifications.
 
 Ce projet est sous licence MIT.
 
+## Membres du projet
+
+Equipe back:
+- [DemoxDev] - Cristian MESINA
+- [TimotheCDGP] - Timothé PEYREGNE
+- [gyom2003] - Guillaume Le Formal
+
+Equipe front:
+- [skeeven1] - Skeeven Men
+- [K4mlna] - Tawan François ASSELAIN 
+
+Les deux:
+- [DemoxDev] - Cristian MESINA
+
+
 ## Contact
 
 Chef de projet: [DemoxDev](mailto:christianmesina2002@gmail.com)
