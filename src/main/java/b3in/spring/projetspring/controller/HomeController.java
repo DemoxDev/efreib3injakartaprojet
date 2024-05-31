@@ -8,7 +8,21 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "connexion";
     }
 
+    @GetMapping("/connexion")
+    public String connexion() {
+        return "connexion";
+    }
+
+    @GetMapping("/inscription")
+    public String inscription() {
+        return "inscription";
+    }
+
+    @GetMapping("/mainpage")
+    public String mainpage() {
+        return "/mainpage";
+    }
 }
