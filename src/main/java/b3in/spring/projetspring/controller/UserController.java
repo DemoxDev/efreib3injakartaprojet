@@ -52,7 +52,6 @@ public class UserController {
 
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    @ResponseBody
     public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         String result = userService.createUser(user);
         if ("Utilisateur cree avec succes".equals(result)) {
