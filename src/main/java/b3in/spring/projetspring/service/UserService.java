@@ -116,4 +116,15 @@ public class UserService {
         }
     }
 
+    public User authenticateUser(String email, String password) {
+        List<User> users = userRepository.findByEmail(email);
+        if (!users.isEmpty()) {
+            User user = users.get(0);
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LogoutController {
 
+    /*
     @GetMapping("/logout")
     public String logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -15,4 +16,5 @@ public class LogoutController {
         }
         return "redirect:/connexion";
     }
+     */
 }

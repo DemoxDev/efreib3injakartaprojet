@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des animé</title>
-    <link rel="stylesheet" href="/css/mainpage.css">
+    <link rel="stylesheet" th:href="@{/css/mainpage.css}">
 </head>
 <body>
 <!-- TODO: UTILISER CELA POUR AFFICHER MENU AJOUT ANIME SI ON EST ADMIN
@@ -18,6 +18,60 @@
     This content is only shown to users.
 </div>
 -->
+<header>
+    <div class="header-container">
+        <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+        <div class="button-container">
+            <button class="header-button" id="showHidderButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+            </button>
+            <button class="header-button" id="toggleButton">
+                <!--
+                <div th:if="${#authentication}">
+                    <img th:src="${#authentication.principal.attributes['avatar_url']}" alt="User Avatar">
+                </div>
+                <div th:unless="${#authentication}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
+                    </svg>
+                </div>
+                -->
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="bar1"></div>
+    <div class="burgerhider height-zero" id="burgerhider"></div>
+    <div class="burger height-zero" id="burger">
+        <button class="burgerbutton" id="burgerbutton1">
+            <div class="burgerbutton2">
+                <div th:if="${session.user != null}">
+                    <p th:text="${session.user.username}"></p>
+                </div>
+                <div th:if="${session.user == null}">
+                    <p>Connecté en mode anonyme</p>
+                </div>
+            </div>
+        </button>
+        <button class="burgerbutton" id="burgerbutton2">
+            <div class="burgerbutton2 underline" >
+                <h4 th:href="@{/logout}">Me déconnecter de Listanime</h4> <!-- TODO: Logout ne marche pas, CORRIGER! -->
+            </div>
+        </button>
+        <button class="burgerbutton" id="burgerbutton3">
+            <div class="burgerbutton2 underline">
+                <h4>Rétracter le menu déroulant</h4>
+            </div>
+        </button>
+    </div>
+</header>
+
 <div class="hidder" id="hidder">
     <div class="opacityscreen"></div>
     <div class="addanime">
@@ -75,52 +129,6 @@
     </div>
 </div>
 
-<header>
-    <div class="header-container">
-        <img src="/img/logo.png" alt="Logo" class="logo">
-        <div class="button-container">
-            <button class="header-button" id="showHidderButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>
-            </button>
-            <button class="header-button" id="toggleButton">
-                <div th:if="${#authentication}">
-                    <img th:src="${#authentication.principal.attributes['avatar_url']}" alt="User Avatar">
-                </div>
-                <div th:unless="${#authentication}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a5 5 0 0 0-5-5z"/>
-                    </svg>
-                </div>
-            </button>
-        </div>
-    </div>
-    <div class="bar1"></div>
-    <div class="burgerhider height-zero" id="burgerhider"></div>
-    <div class="burger height-zero" id="burger">
-        <button class="burgerbutton" id="burgerbutton1">
-            <div class="burgerbutton2">
-                <div th:if="${#authentication}">
-                    <p th:text="${#authentication.principal.attributes['login']}"></p>
-                </div>
-                <div th:unless="${#authentication}">
-                    <p>Connecté en mode anonyme</p>
-                </div>
-            </div>
-        </button>
-        <button class="burgerbutton" id="burgerbutton2">
-            <div class="burgerbutton2 underline" >
-                <h4 th:href="@{/logout}">Me déconnecter de Listanime</h4> <!-- TODO: Logout ne marche pas, CORRIGER! -->
-            </div>
-        </button>
-        <button class="burgerbutton" id="burgerbutton3">
-            <div class="burgerbutton2 underline">
-                <h4>Rétracter le menu déroulant</h4>
-            </div>
-        </button>
-    </div>
-</header>
 <section class="animelist">
     <div class="animelistdiv">
         <div class="centerlist">
@@ -134,7 +142,7 @@
     </div>
 </section>
 
-<script src="/js/mainpage.js"></script>
+<script th:src="@{/js/mainpage.js}"></script>
 
 </body>
 </html>
