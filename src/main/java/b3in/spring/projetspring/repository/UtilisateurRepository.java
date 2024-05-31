@@ -1,22 +1,20 @@
 package b3in.spring.projetspring.repository;
 
-import b3in.spring.projetspring.entity.User;
+import b3in.spring.projetspring.entity.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer>{
     public boolean existsByEmail(String email);
 
-    public Optional<User> findByEmail(String email);
+    public Optional<Utilisateur> findByEmail(String email);
 
-    public Optional<User> findByUsername(String username);
+    public Optional<Utilisateur> findByUsername(String username);
 
-    @Query(value = "SELECT MAX(u.id) FROM User u")
+    @Query(value = "SELECT MAX(u.id) FROM Utilisateur u")
     public Integer findMaxId();
 }

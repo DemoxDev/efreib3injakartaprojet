@@ -56,10 +56,10 @@ Ce projet est sous licence MIT.
 Equipe back:
 - [DemoxDev] - Cristian MESINA
 - [TimotheCDGP] - Timothé PEYREGNE
-- [gyom2003] - Guillaume Le Formal
+- [gyom2003] - Guillaume LE FORMAL
 
 Equipe front:
-- [skeeven1] - Skeeven Men
+- [skeeven1] - Skeeven MEN
 - [K4mlna] - Tawan François ASSELAIN 
 
 Les deux:

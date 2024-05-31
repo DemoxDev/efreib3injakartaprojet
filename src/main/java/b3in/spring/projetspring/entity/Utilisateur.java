@@ -2,7 +2,7 @@ package b3in.spring.projetspring.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,7 +20,7 @@ public class User {
     private String role;
 
 
-    public User(int id, String username, String password, String email, String role) {
+    public Utilisateur(int id, String username, String password, String email, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -28,7 +28,7 @@ public class User {
         this.role = "USER";
     }
 
-    public User() {
+    public Utilisateur() {
 
     }
 

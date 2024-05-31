@@ -1,6 +1,6 @@
 package b3in.spring.projetspring.controller;
 
-import b3in.spring.projetspring.entity.User;
+import b3in.spring.projetspring.entity.Utilisateur;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import b3in.spring.projetspring.service.UserService;
+import b3in.spring.projetspring.service.UtilisateurService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UserController {
+public class UtilisateurController {
 
     @Autowired
-    private UserService userService;
+    private UtilisateurService utilisateurService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
-        User user = userService.authenticateUser(email, password);
+        Utilisateur user = utilisateurService.authenticateUser(email, password);
         if (user != null) {
             session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("successMessage", "Connexion réussie.");
@@ -58,9 +58,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+    public String createUser(@ModelAttribute Utilisateur user, RedirectAttributes redirectAttributes) {
         System.out.println("createUser appelé!!!!");
-        String result = userService.createUser(user);
+        String result = utilisateurService.createUser(user);
         if ("Utilisateur cree avec succes".equals(result)) {
             redirectAttributes.addFlashAttribute("successMessage", "Inscription réussie, veuillez vous connecter.");
             return "redirect:/connexion";
@@ -72,20 +72,20 @@ public class UserController {
 
     @RequestMapping(value = "getAllUsers", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<Utilisateur> getAllUsers() {
+        return utilisateurService.getAllUsers();
     }
 
     @RequestMapping(value = "updateUser", method = RequestMethod.PUT)
     @ResponseBody
-    public String updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    public String updateUser(@RequestBody Utilisateur user) {
+        return utilisateurService.updateUser(user);
     }
 
     @RequestMapping(value = "deleteUser", method = RequestMethod.DELETE)
     @ResponseBody
-    public String deleteUser(@RequestBody User user) {
-        return userService.deleteUser(user);
+    public String deleteUser(@RequestBody Utilisateur user) {
+        return utilisateurService.deleteUser(user);
     }
 
 

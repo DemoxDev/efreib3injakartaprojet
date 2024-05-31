@@ -1,62 +1,61 @@
 package b3in.spring.projetspring.service;
 
-import b3in.spring.projetspring.entity.User;
+import b3in.spring.projetspring.entity.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import b3in.spring.projetspring.repository.UserRepository;
+import b3in.spring.projetspring.repository.UtilisateurRepository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
+public class UtilisateurService {
+    private final UtilisateurRepository utilisateurRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
     }
 
-    public Optional<User> login(String username, String password) {
-        Optional<User> userOpt = userRepository.findByUsername(username);
+    public Optional<Utilisateur> login(String username, String password) {
+        Optional<Utilisateur> userOpt = utilisateurRepository.findByUsername(username);
         return Optional.empty();
     }
 
     @Transactional
-    public String createUser(User user){
+    public String createUser(Utilisateur user){
         try {
-            if(userRepository.existsByEmail(user.getEmail())){
+            if(utilisateurRepository.existsByEmail(user.getEmail())){
                 return "Email existe deja";
             }
 
-            Integer maxId = userRepository.findMaxId();
+            Integer maxId = utilisateurRepository.findMaxId();
             if (maxId == null) {
                 maxId = 0;
             }
 
             user.setId(maxId + 1);
-            userRepository.save(user);
+            utilisateurRepository.save(user);
             return "Utilisateur cree avec succes";
         } catch (Exception e){
             throw e;
         }
     }
 
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public List<Utilisateur> getAllUsers(){
+        return utilisateurRepository.findAll();
     }
 
     @Transactional
-    public String updateUser(User user){
-        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+    public String updateUser(Utilisateur user){
+        Optional<Utilisateur> optionalUser = utilisateurRepository.findByEmail(user.getEmail());
         if (optionalUser.isPresent()){
             try {
-                User userToUpdate = optionalUser.get();
+                Utilisateur userToUpdate = optionalUser.get();
                 userToUpdate.setUsername(user.getUsername());
                 userToUpdate.setPassword(user.getPassword());
                 userToUpdate.setEmail(user.getEmail());
-                userRepository.save(userToUpdate);
+                utilisateurRepository.save(userToUpdate);
                 return "Utilisateur mis a jour avec succes";
             } catch (Exception e){
                 throw e;
@@ -67,13 +66,13 @@ public class UserService {
     }
 
     @Transactional
-    public String updateUserRole(User user){
-        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+    public String updateUserRole(Utilisateur user){
+        Optional<Utilisateur> optionalUser = utilisateurRepository.findByEmail(user.getEmail());
         if (optionalUser.isPresent()){
             try {
-                User userToUpdate = optionalUser.get();
+                Utilisateur userToUpdate = optionalUser.get();
                 userToUpdate.setRole(user.getRole());
-                userRepository.save(userToUpdate);
+                utilisateurRepository.save(userToUpdate);
                 return "Rôle d'utilisateur mis a jour avec succes";
             } catch (Exception e){
                 throw e;
@@ -84,11 +83,11 @@ public class UserService {
     }
 
     @Transactional
-    public String deleteUser(User user){
-        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+    public String deleteUser(Utilisateur user){
+        Optional<Utilisateur> optionalUser = utilisateurRepository.findByEmail(user.getEmail());
         if (optionalUser.isPresent()){
             try {
-                userRepository.delete(optionalUser.get());
+                utilisateurRepository.delete(optionalUser.get());
                 return "User deleted successfully";
             } catch (Exception e){
                 throw e;
@@ -98,10 +97,10 @@ public class UserService {
         }
     }
 
-    public User authenticateUser(String email, String password){
-        Optional<User> optionalUser = userRepository.findByEmail(email);
+    public Utilisateur authenticateUser(String email, String password){
+        Optional<Utilisateur> optionalUser = utilisateurRepository.findByEmail(email);
         if (optionalUser.isPresent()){
-            User existingUser = optionalUser.get();
+            Utilisateur existingUser = optionalUser.get();
             if (existingUser.getPassword().equals(password)) {
                 return existingUser;
             } else {
