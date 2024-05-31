@@ -58,7 +58,6 @@ public class UserController {
 
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    @ResponseBody
     public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         System.out.println("createUser appelé!!!!");
         String result = userService.createUser(user);

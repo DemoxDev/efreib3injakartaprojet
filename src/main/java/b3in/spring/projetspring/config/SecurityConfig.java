@@ -7,17 +7,26 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception {
-        return https
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
                 // .securityMatcher("/static/**")
                 .authorizeHttpRequests( auth ->  {
-                    auth.requestMatchers("/css/**", "/js/**", "/img/**", "connexion", "inscription", "/", "createUser", "login").permitAll();
+                    auth.requestMatchers(new AntPathRequestMatcher("/connexion")).permitAll();
+                    auth.requestMatchers(new AntPathRequestMatcher("/inscription")).permitAll();
+                    auth.requestMatchers(new AntPathRequestMatcher("/")).permitAll();
+                    auth.requestMatchers(new AntPathRequestMatcher("/createUser")).permitAll();
+                    auth.requestMatchers(new AntPathRequestMatcher("/login")).permitAll();
+                    // auth.requestMatchers(new AntPathRequestMatcher("/mainpage")).permitAll();
+                    // auth.requestMatchers(new AntPathRequestMatcher("/infoUser")).permitAll();
+                    // auth.requestMatchers(new AntPathRequestMatcher("/createUser")).permitAll();
+                    auth.requestMatchers("/css/**", "/js/**", "/img/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
 
