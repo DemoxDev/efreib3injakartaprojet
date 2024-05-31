@@ -23,28 +23,45 @@
     <div class="addanime">
         <img src="/img/aqua3.png" alt="aqua3" class="imghidder">
         <form class="formdiv">
-            <p>Nom</p>
-            <label for="input-title">
-                <input class="input" id="input-title" name="input-title" placeholder="Saisir le nom de l'anime"/>
-            </label>
-            <p>Genre</p>
-            <label for="input-genre">
-                <input class="input" id="input-genre" name="input-genre" placeholder="Saisir le genre de l'anime"/>
-            </label>
-            <p>Studio</p>
-            <label for="input-studio">
-                <input class="input" id="input-studio" name="input-studio" placeholder="Saisir le studio créateur"/>
-            </label>
-            <p>Année</p>
-            <label for="input-year">
-                <input class="input" id="input-year" name="input-year" placeholder="Saisir son année de sortie"/>
-            </label>
-            <p>Image</p>
-            <input type="file" id="input-img" name="input-img" accept="image/jpeg" placeholder="Veuillez choisir une image"/>
-
-            <div class="formbuttons">
-                <button>DELETE</button>
-                <button>SEND</button>
+            <div class="formdiv2">
+                <div class="containinputs">
+                    <div class="container2">
+                        <p>Titre</p>
+                        <label for="input-title">
+                            <input class="input" id="input-title" name="input-title" placeholder="Saisir le nom de l'anime"/>
+                        </label>
+                    </div>
+                    <div class="container2">
+                        <p>Genre</p>
+                        <label for="input-genre">
+                            <input class="input" id="input-genre" name="input-genre" placeholder="Saisir le genre de l'anime"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="containinputs">
+                    <div class="container2">
+                        <p>Année</p>
+                        <label for="input-year">
+                            <input class="input" id="input-year" name="input-year" placeholder="Saisir son année de sortie"/>
+                        </label>
+                    </div>
+                    <div class="container2">
+                        <p>Studio</p>
+                        <label for="input-studio">
+                            <input class="input" id="input-studio" name="input-studio" placeholder="Saisir le studio créateur"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="formbuttons">
+                    <input type="file" id="input-img" name="input-img" accept="image/jpeg" class="button1" style="display: none;">
+                    <label for="input-img" class="button1">
+                        <img src="/img/plusicon.png" class="imgplus">
+                    </label>
+                    <div class="formbuttons2">
+                        <button>Supprimer</button>
+                        <button>Envoyer</button>
+                    </div>
+                </div>
             </div>
         </form>
         <div class="rightsquare"></div>

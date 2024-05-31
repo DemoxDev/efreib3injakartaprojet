@@ -317,15 +317,33 @@ header {
     width:50%;
     height:100%;
     z-index: 300;
-    border-radius: 4vw;
     overflow: hidden;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formdiv2 {
+    height:65vh;
+}
+
+.containinputs {
+    display:flex;
+    flex-direction: row;
+    width:90%;
+}
+
+.container2 {
+    display:flex;
+    flex-direction: column;
+    width:50%;
 }
 
 .input {
-    margin-left: 30px;
-    margin-top:30px;
-    width:24vw;
+    margin-top:10px;
+    width:80%;
     height:3vw;
     border-radius: 1.3vw;
     border:3px solid black;
@@ -335,7 +353,7 @@ header {
 }
 
 .formdiv p{
-    margin-left:30px;
+
     margin-top:30px;
     color:white;
     font-size: 20px;
@@ -346,19 +364,20 @@ header {
 
 .formbuttons {
     margin-top:30px;
-    margin-left:30px;
     border-top:3px solid black;
-    width:26vw;
+    width:85%;
     height:100%;
+    display: flex;
+    justify-content: center;
+    gap:5%;
 
 }
 
 .formbuttons button{
     margin-top:30px;
-    margin-left:1.5vw;
     border:3px solid black;
     width:40%;
-    height:20%;
+    height:25%;
     border-radius: 1.5vw;
     color:white;
     font-size:1.4vw;
@@ -368,17 +387,55 @@ header {
     transition-duration: 300ms;
 }
 
-.formbuttons button:nth-child(1){
+.formbuttons2 button:nth-child(1){
     background-color: #e8171769;
 }
-.formbuttons button:nth-child(1):hover{
+.formbuttons2 button:nth-child(1):hover{
     background-color: #e81717b6;
 }
 
-.formbuttons button:nth-child(2){
+.formbuttons2 button:nth-child(2){
     background-color: #52B3F0;
 }
 
-.formbuttons button:nth-child(2):hover{
+.formbuttons2 button:nth-child(2):hover{
     background-color: #8ed4ff;
+}
+
+.button1 {
+    background-color: #D0ECFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button1:hover {
+    background-color: #f8fcff;
+}
+
+.formbuttons2{
+    margin-top:30px;
+    gap:5px;
+    height:25%;
+    display: flex;
+    flex-direction: column;
+    width:40%;
+}
+.formbuttons2 button{
+    margin-top:0px;
+    border:3px solid black;
+    width:100%;
+    height:50%;
+    border-radius: 1.1vw;
+    color:white;
+    font-size:1.4vw;
+    font-weight: 400;
+    cursor:pointer;
+    pointer-events: visible;
+    transition-duration: 300ms;
+}
+.imgplus{
+    margin-top:5px;
+    width:70%;
+    object-fit: cover;
 }
