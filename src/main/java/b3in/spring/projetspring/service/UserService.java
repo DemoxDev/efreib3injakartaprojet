@@ -7,6 +7,7 @@ import b3in.spring.projetspring.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,6 +16,12 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+
+    public Optional<User> login(String username, String password) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        return Optional.empty();
     }
 
     @Transactional
